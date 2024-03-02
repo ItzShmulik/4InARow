@@ -5,6 +5,8 @@ const buttons = document.getElementsByClassName("button");
 const rows = 6;
 const columns = 7;
 
+let turn = 0;
+
 const arr = createArray(rows, columns);
 
 for (let index = 0; index < buttons.length; index++) {
@@ -26,19 +28,25 @@ function switchPlayer(){
 }
 
 function addCircle(id){
-    
-    let index = arr.length - 1;
 
-    console.log(arr[index][id]);
-
-    console.log("Played at: ");
-    console.log(index, id);
-
-    if(currentPlayer == "p1"){
-        arr[index][id] = 1;
+    if(turn == 0){
+            arr[arr.length - 1][id] = 1;
     }else{
-        arr[index][id] = 2;
+        for (let index = 0; index < arr.length; index++) {
+            if(arr[index + 1][id] == 1 || arr[index + 1][id] == 2){
+                if(currentPlayer == "p1"){
+                    arr[index][id] = 1;
+                }else{
+                    arr[index][id] = 2;
+                }
+                break;
+            }
+        }
+        
     }
+
+    turn++;
+
 }
 
 function createArray(rows, columns){
