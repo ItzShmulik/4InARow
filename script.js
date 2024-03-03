@@ -2,10 +2,10 @@ let currentPlayer = "p1";
 
 const buttons = document.getElementsByClassName("button");
 
+let turn = 0;
+
 const rows = 6;
 const columns = 7;
-
-let turn = 0;
 
 const arr = createArray(rows, columns);
 
@@ -29,24 +29,46 @@ function switchPlayer(){
 
 function addCircle(id){
 
-    if(turn == 0){
-            arr[arr.length - 1][id] = 1;
-    }else{
-        for (let index = 0; index < arr.length; index++) {
-            if(arr[index + 1][id] == 1 || arr[index + 1][id] == 2){
-                if(currentPlayer == "p1"){
-                    arr[index][id] = 1;
-                }else{
-                    arr[index][id] = 2;
-                }
-                break;
-            }
+    if(isColumnOccupied(id)){
+
+        const rowFound = findAvailableSpot(id);
+
+        if(currentPlayer == "p1"){
+            arr[rowFound][id] = 1;
+        }else{
+            arr[rowFound][id] = 2;
         }
-        
+
+        console.log("Added circle at", rowFound, id);
+    }else{
+        if(currentPlayer == "p1"){
+            arr[arr.length - 1][id] = 1;
+        }else{
+            arr[arr.length - 1][id] = 2;
+        }
+
+        console.log("Added circle at ", arr.length - 1, id)
     }
 
-    turn++;
+}
 
+function isColumnOccupied(column){
+
+    for (let index = 0; index < arr.length; index++) {
+        if(arr[index][column] == 1 || arr[index][column] == 2){
+            return true;            
+        }
+    }
+
+    return false;
+}
+
+function findAvailableSpot(column){
+    for (let index = 0; index < arr.length; index++) {
+        if(arr[index + 1][column] == 1 || arr[index + 1][column] == 2){
+            return index;
+        }
+    }
 }
 
 function createArray(rows, columns){
