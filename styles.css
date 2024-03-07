@@ -1,5 +1,5 @@
 body{
-    background-color: #8f3645;
+    background-color: #b32e45;
 }
 
 #table_container{
@@ -13,6 +13,14 @@ body{
     gap: 5px;
     justify-content: flex-start;
     align-items: stretch;
+}
+
+#red_circle{
+    content: url("./Red_Circle.png");
+}
+
+#blue_circle{
+    content: url("./Blue_Circle.png");
 }
 
 .table_item{

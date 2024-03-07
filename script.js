@@ -1,6 +1,7 @@
 let currentPlayer = "p1";
 
 const buttons = document.getElementsByClassName("button");
+const divs = document.getElementsByClassName("table_item");
 
 let turn = 0;
 
@@ -8,6 +9,14 @@ const rows = 6;
 const columns = 7;
 
 const arr = createArray(rows, columns);
+
+let divsArr = [];
+let tempArr = Array.prototype.slice.call(divs);
+
+while(tempArr.length > 0){
+    divsArr.push(tempArr.splice(0, 7));
+}
+
 
 for (let index = 0; index < buttons.length; index++) {
     const button = buttons[index];
@@ -29,25 +38,37 @@ function switchPlayer(){
 
 function addCircle(id){
 
+    let circle = document.createElement("img");
+    
+
     if(isColumnOccupied(id)){
 
         const rowFound = findAvailableSpot(id);
 
         if(currentPlayer == "p1"){
             arr[rowFound][id] = 1;
+            circle.id = "red_circle";
         }else{
             arr[rowFound][id] = 2;
+            circle.id = "blue_circle";
         }
 
-        console.log("Added circle at", rowFound, id);
+        divsArr[rowFound][id].appendChild(circle);
+
+
+        console.log("Added circle at", divsArr[rowFound][id]);
     }else{
         if(currentPlayer == "p1"){
             arr[arr.length - 1][id] = 1;
+            circle.id = "red_circle";
         }else{
             arr[arr.length - 1][id] = 2;
+            circle.id = "blue_circle";
         }
 
-        console.log("Added circle at ", arr.length - 1, id)
+        divsArr[arr.length - 1][id].appendChild(circle);
+
+        console.log("Added circle at ", divsArr[arr.length - 1][id]);
     }
 
 }
