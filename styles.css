@@ -16,11 +16,18 @@ body{
 }
 
 #red_circle{
+    position: absolute;
     content: url("./Red_Circle.png");
+    animation-name: fallDown;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
 }
 
 #blue_circle{
     content: url("./Blue_Circle.png");
+    animation-name: fallDown;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
 }
 
 .table_item{
@@ -41,4 +48,14 @@ body{
 
 .button:hover{
     background-color: #808080;
+}
+
+@keyframes fallDown{
+
+    from {
+        transform: translateY(-500px);
+    }
+    to {
+        transform: translateY(0);
+    }
 }

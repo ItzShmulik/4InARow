@@ -36,7 +36,7 @@ function switchPlayer(){
     }
 }
 
-function addCircle(id){
+function addCircle(id, b){
 
     let circle = document.createElement("img");
     
